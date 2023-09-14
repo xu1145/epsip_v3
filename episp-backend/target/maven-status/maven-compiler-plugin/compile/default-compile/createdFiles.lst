@@ -1,0 +1,4 @@
+com\anlogy\epsip\vo\order\CustomerQueryVO.class
+com\anlogy\epsip\dto\ProductQueryDTO.class
+com\anlogy\epsip\dto\CustomerQueryDTO.class
+com\anlogy\epsip\vo\order\ProductQueryVO.class

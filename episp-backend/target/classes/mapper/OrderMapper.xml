@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anlogy.epsip.mapper.OrderMapper">
+
+
+    <select id="statCustomer" resultType="com.anlogy.epsip.vo.order.CustomerQueryVO">
+        SELECT
+            p.id,
+            p.`name`,
+            SUM( `count` ) count
+        FROM
+            tb_order o
+                LEFT JOIN tb_order_info oi ON o.id = oi.order_id
+                LEFT JOIN tb_product p ON p.id = oi.product_id
+        WHERE
+            customer_id = #{id}
+        GROUP BY
+            p.id
+    </select>
+    <select id="statProduct" resultType="com.anlogy.epsip.vo.order.ProductQueryVO">
+        SELECT
+            c.id,
+            c.`name`,
+            SUM( `count` ) count
+        FROM
+            tb_order o
+                LEFT JOIN tb_order_info oi ON o.id = oi.order_id
+                LEFT JOIN tb_product p ON p.id = oi.product_id
+                LEFT JOIN tb_customer c ON c.id = o.customer_id
+        WHERE
+            product_id = #{id}
+        GROUP BY
+            c.id
+    </select>
+</mapper>
